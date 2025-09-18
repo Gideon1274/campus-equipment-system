@@ -12,9 +12,11 @@ public class EquipmentService {
         this.equipmentRepository = equipmentRepository;
     }
 
-    public Equipment createEquipment(String name) {
+    public Equipment createEquipment(String name, String type, String serialNumber) {
         Equipment equipment = new Equipment();
         equipment.setName(name);
+        equipment.setType(type);
+        equipment.setSerialNumber(serialNumber);
         equipment.setAvailability(true);
         return equipmentRepository.save(equipment);
     }

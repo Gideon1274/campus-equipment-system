@@ -1,7 +1,10 @@
 package edu.cit.yu.rainricrandy.campuseequipmentloan.controller;
 
+import edu.cit.yu.rainricrandy.campuseequipmentloan.DTO.LoanDTO;
 import edu.cit.yu.rainricrandy.campuseequipmentloan.model.Equipment;
 import edu.cit.yu.rainricrandy.campuseequipmentloan.model.Loan;
+import edu.cit.yu.rainricrandy.campuseequipmentloan.model.LoanStatus;
+import edu.cit.yu.rainricrandy.campuseequipmentloan.model.Student;
 import edu.cit.yu.rainricrandy.campuseequipmentloan.service.LoanService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +25,12 @@ public class LoanController {
     }
 
     @PostMapping("/loans")
-    public ResponseEntity<Loan> createLoan(@RequestParam Long studentId, @RequestParam Long equipmentId) {
-        Loan loan = loanService.createLoan(studentId, equipmentId);
-        return ResponseEntity.ok(loan);
+    public ResponseEntity<Loan> createLoan(@RequestBody LoanDTO loanDTO) {
+        Loan savedLoan = loanService.createLoan(loanDTO);
+        return ResponseEntity.ok(savedLoan);
     }
+
+
 
     @PostMapping("/loans/{id}/return")
     public ResponseEntity<Map<String, Object>> returnLoan(@PathVariable Long id) {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
 public class StudentController {
 
     @Autowired
@@ -22,5 +22,8 @@ public class StudentController {
     @PostMapping
     public Student addStudent(@RequestBody Student student) {
         return studentRepository.save(student);
+    }
+    public StudentController(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 }
